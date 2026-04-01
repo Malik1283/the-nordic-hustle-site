@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Nordic Hustle — From the North. For the Relentless.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --off-white: #f8f5f0;
+    --red: #e8003d;
+    --pink: #ff6b9d;
+    --gold: #ffb800;
+    --purple: #7c3aed;
+    --green: #059669;
+    --grey: #6b7280;
+    --light: #f1f0ee;
+    --card-border: #e5e2dc;
+    --cream: #f0ece3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--off-white); color: var(--black); font-family: 'Nunito', sans-serif; overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--red);
+    padding: 8px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .ticker-label {
+    background: var(--black);
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0 14px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 6px;
+  }
+  .ticker-track {
+    display: flex;
+    animation: ticker 32s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: white;
+    padding: 0 28px;
+  }
+  .ticker-item::after { content: ' ·'; opacity: 0.4; margin-left: 24px; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── TOP AD ── */
+  .ad-top {
+    background: #0a0a14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    position: relative;
+    gap: 16px;
+    padding: 0 20px;
+  }
+  .ad-label {
+    position: absolute;
+    top: 5px; right: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.5rem;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .ad-top-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+  .ad-top-copy {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 700;
+    font-style: italic;
+  }
+  .ad-top-cta {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 900;
+    font-size: 0.7rem;
+    padding: 7px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--black);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--red);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: white; letter-spacing: 0.1em; line-height: 1; }
+  .logo span { color: var(--red); }
+  .logo-tag { font-size: 0.55rem; color: var(--gold); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.2em; text-transform: uppercase; }
+  .masthead-nav { display: flex; gap: 6px; align-items: center; }
+  .nav-btn { font-size: 0.72rem; font-weight: 800; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+  .nav-btn-ghost { border: 2px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); }
+  .nav-btn-red { background: var(--red); color: white; }
+  .nav-btn-gold { background: var(--gold); color: var(--black); }
+  .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+  .hamburger span { width: 22px; height: 2px; background: white; border-radius: 2px; }
+
+  /* ── NAV PILLS ── */
+  .nav-pills {
+    background: white;
+    padding: 10px 16px;
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 2px solid var(--card-border);
+  }
+  .nav-pills::-webkit-scrollbar { display: none; }
+  .npill {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid var(--card-border);
+    color: var(--grey);
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .npill:hover { background: var(--black); color: white; border-color: var(--black); }
+  .npill.active { background: var(--black); color: white; border-color: var(--black); }
+  .npill.fire { border-color: var(--red); color: var(--red); background: #fff0f4; }
+  .npill.fire:hover { background: var(--red); color: white; }
+
+  /* ── MAIN WRAP ── */
+  .main { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+
+  /* ── HERO ── */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3px;
+    background: var(--card-border);
+    margin-top: 3px;
+  }
+
+  .hero-main {
+    background: var(--black);
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .hero-main:hover { opacity: 0.92; }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.4) 55%, transparent 100%),
+      repeating-linear-gradient(135deg, #0a0814, #0a0814 20px, #0d0a1a 20px, #0d0a1a 40px);
+  }
+
+  .hero-emoji-bg {
+    position: absolute;
+    top: 20px; right: 24px;
+    font-size: 6rem;
+    opacity: 0.12;
+    filter: blur(2px);
+    z-index: 1;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-badges { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-red { background: var(--red); color: white; }
+  .badge-gold { background: var(--gold); color: var(--black); }
+  .badge-pink { background: var(--pink); color: white; }
+  .badge-purple { background: var(--purple); color: white; }
+  .badge-green { background: var(--green); color: white; }
+  .badge-outline { border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); background: transparent; }
+
+  .hero-headline {
+    font-weight: 900;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .hero-headline .pop {
+    background: linear-gradient(120deg, var(--gold), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-deck {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    max-width: 520px;
+  }
+
+  .hero-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .hmeta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .hread {
+    background: rgba(255,255,255,0.08);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── HERO SIDEBAR ── */
+  .hero-sidebar { display: flex; flex-direction: column; gap: 3px; }
+
+  .hero-side-card {
+    flex: 1;
+    padding: 18px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 148px;
+  }
+  .hero-side-card:hover { opacity: 0.88; }
+
+  .hsc-1 { background: linear-gradient(135deg, #1a0a28, #0a0820); }
+  .hsc-2 { background: linear-gradient(135deg, #0a1a0a, #0a2010); }
+  .hsc-3 { background: linear-gradient(135deg, #1a0a0a, #200a10); }
+
+  .hsc-emoji {
+    position: absolute;
+    top: 10px; right: 12px;
+    font-size: 2.2rem;
+    opacity: 0.35;
+  }
+
+  .hsc-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.56rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 6px;
+  }
+  .hsc-1 .hsc-kicker { color: var(--pink); }
+  .hsc-2 .hsc-kicker { color: #34d399; }
+  .hsc-3 .hsc-kicker { color: var(--gold); }
+
+  .hsc-headline {
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+
+  .hsc-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SECTION HEADER ── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0 10px;
+    border-bottom: 2px solid var(--black);
+    margin-bottom: 3px;
+  }
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+  }
+  .sec-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-left: auto;
+  }
+  .sec-more {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--red);
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 1px;
+  }
+
+  /* ── NEWS GRID 3-COL ── */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    background: var(--card-border);
+    margin-bottom: 3px;
+  }
+
+  .ncard {
+    background: var(--off-white);
+    padding: 18px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-top: 3px solid transparent;
+  }
+  .ncard:hover { background: white; }
+  .ncard.hover-red:hover { border-top-color: var(--red); }
+  .ncard.hover-pink:hover { border-top-color: var(--pink); }
+  .ncard.hover-purple:hover { border-top-color: var(--purple); }
+  .ncard.hover-gold:hover { border-top-color: var(--gold); }
+  .ncard.hover-green:hover { border-top-color: var(--green); }
+
+  .ncard-img {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ncard-kicker {
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ncard-headline {
+    font-weight: 900;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .ncard-deck {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--grey);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .ncard-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.56rem;
+    color: #c0bdb7;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Featured 2-col card */
+  .ncard-featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .ncard-featured .ncard-img { height: 100%; min-height: 200px; border-radius: 8px; margin-bottom: 0; }
+  .ncard-featured .ncard-headline { font-size: 1.2rem; }
+
+  /* ── AD MID ── */
+  .ad-mid {
+    background: white;
+    border: 2px solid var(--card-border);
+    border-left: 5px solid var(--gold);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    margin: 16px 0;
+    gap: 16px;
+    position: relative;
+  }
+  .ad-mid .ad-label { position: absolute; top: 4px; right: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.12em; }
+  .ad-mid-left { display: flex; align-items: center; gap: 14px; }
+  .ad-mid-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; }
+  .ad-mid-text { font-size: 0.82rem; font-weight: 700; color: var(--grey); font-style: italic; }
+  .ad-mid-cta { background: var(--black); color: white; font-weight: 900; font-size: 0.68rem; padding: 9px 18px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+
+  /* ── TRENDING LIST ── */
+  .trend-list { display: flex; flex-direction: column; gap: 2px; background: var(--card-border); margin-bottom: 3px; }
+
+  .trend-item {
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .trend-item:hover { background: white; border-left-color: var(--red); }
+
+  .trend-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #e5e2dc;
+    line-height: 1;
+    text-align: center;
+    transition: color 0.15s;
+  }
+  .trend-item:hover .trend-num { color: var(--red); }
+
+  .trend-headline { font-weight: 900; font-size: 0.9rem; line-height: 1.35; color: var(--black); }
+  .trend-sub { font-size: 0.72rem; font-weight: 600; color: var(--grey); margin-top: 3px; }
+
+  .trend-stat {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .trend-views {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--grey);
+    font-weight: 600;
+  }
+  .trend-fire { font-size: 0.8rem; }
+
+  /* ── DON RANKINGS ── */
+  .don-block {
+    background: var(--black);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin: 16px 0;
+  }
+  .don-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .don-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--gold); letter-spacing: 0.06em; }
+  .don-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 2px; }
+  .don-more { font-size: 0.72rem; font-weight: 800; color: var(--gold); cursor: pointer; border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
+
+  .don-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+  .don-card {
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 16px 14px;
+    border-top: 3px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .don-card:hover { background: rgba(255,255,255,0.08); }
+  .don-card.three { border-top-color: var(--gold); }
+  .don-card.two { border-top-color: #9ca3af; }
+  .don-card.one { border-top-color: #92400e; }
+  .don-card.bl { border-top-color: var(--red); }
+
+  .don-stars { font-size: 1rem; margin-bottom: 8px; letter-spacing: 3px; }
+  .don-name { font-weight: 900; font-size: 1rem; color: white; margin-bottom: 5px; line-height: 1.2; }
+  .don-desc { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.35); line-height: 1.45; }
+
+  /* ── WIDE AD ── */
+  .ad-wide {
+    background: #0a0a14;
+    border-radius: 12px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin: 16px 0;
+    position: relative;
+  }
+  .ad-wide .ad-label { position: absolute; top: 5px; right: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; color: rgba(255,255,255,0.15); text-transform: uppercase; letter-spacing: 0.12em; }
+  .ad-wide-accent { width: 6px; height: 100%; background: linear-gradient(to bottom, var(--pink), var(--purple)); flex-shrink: 0; }
+  .ad-wide-inner { display: flex; align-items: center; gap: 20px; padding: 0 24px; flex: 1; }
+  .ad-wide-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: white; letter-spacing: 0.06em; flex-shrink: 0; }
+  .ad-wide-div { width: 1px; height: 36px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
+  .ad-wide-copy strong { display: block; font-size: 0.9rem; font-weight: 900; color: white; margin-bottom: 2px; }
+  .ad-wide-copy span { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.35); }
+  .ad-wide-cta { margin-left: auto; background: var(--pink); color: white; font-weight: 900; font-size: 0.68rem; padding: 9px 18px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; cursor: pointer; }
+
+  /* ── 2 COL ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: var(--card-border); margin-bottom: 3px; }
+
+  .ncard-dark { background: var(--black) !important; }
+  .ncard-dark .ncard-headline { color: white; }
+  .ncard-dark .ncard-deck { color: rgba(255,255,255,0.4); }
+  .ncard-dark:hover { background: #111 !important; }
+
+  /* ── THE SIGNAL ── */
+  .signal-block {
+    background: linear-gradient(135deg, var(--black), #1a0a28);
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .signal-eye {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    margin-bottom: 10px;
+  }
+  .signal-headline { font-weight: 900; font-size: 1.5rem; color: white; margin-bottom: 7px; line-height: 1.2; }
+  .signal-deck { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .signal-cta { background: var(--gold); color: var(--black); font-weight: 900; font-size: 0.78rem; padding: 13px 22px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; cursor: pointer; }
+
+  /* ── VIDEO ROW ── */
+  .video-row { display: flex; gap: 3px; background: var(--card-border); margin-bottom: 3px; overflow-x: auto; scrollbar-width: none; }
+  .video-row::-webkit-scrollbar { display: none; }
+
+  .video-card {
+    flex-shrink: 0;
+    width: 180px;
+    background: var(--black);
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .video-card:hover { opacity: 0.85; }
+
+  .video-thumb {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+  }
+
+  .video-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .video-card:hover .video-play { opacity: 1; }
+  .video-play-icon {
+    width: 36px; height: 36px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .video-info { padding: 10px 12px 14px; }
+  .video-platform { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 5px; }
+  .video-title { font-weight: 800; font-size: 0.78rem; color: white; line-height: 1.3; }
+  .video-views { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; color: rgba(255,255,255,0.25); margin-top: 5px; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--black);
+    border-top: 4px solid var(--red);
+    margin-top: 40px;
+    padding: 40px 16px 24px;
+  }
+  .footer-inner { max-width: 1180px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 20px; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: white; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .footer-logo span { color: var(--red); }
+  .footer-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 12px; }
+  .footer-about { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.28); line-height: 1.6; }
+  .footer-col-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; color: rgba(255,255,255,0.18); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 14px; }
+  .footer-links { display: flex; flex-direction: column; gap: 9px; }
+  .footer-links a { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.38); transition: color 0.15s; }
+  .footer-links a:hover { color: white; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer-copy { font-size: 0.62rem; font-weight: 700; color: rgba(255,255,255,0.18); }
+  .footer-social { display: flex; gap: 8px; }
+  .footer-social-pill { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); font-size: 0.65rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; cursor: pointer; transition: all 0.15s; }
+  .footer-social-pill:hover { background: rgba(255,255,255,0.12); color: white; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-sidebar { flex-direction: row; }
+    .hero-side-card { min-height: 120px; }
+    .don-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .masthead-nav .nav-btn-ghost { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .grid-3 { grid-template-columns: 1fr; }
+    .ncard-featured { grid-template-columns: 1fr; grid-column: span 1; }
+    .ncard-featured .ncard-img { min-height: 140px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .signal-block { flex-direction: column; text-align: center; }
+    .hero-sidebar { flex-direction: column; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
+    .don-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-label">🔴 Live</div>
+  <div class="ticker-track">
+    <span class="ticker-item">Norway's oil fund is going ALL IN on AI 🤖</span>
+    <span class="ticker-item">Oslo delivery driver building a $10M startup between shifts 🚗💻</span>
+    <span class="ticker-item">Hustle Rankings updated — who made the list this week? 👑</span>
+    <span class="ticker-item">Norway qualifies for FIFA 2026 — here's who's cashing in 🏆</span>
+    <span class="ticker-item">The Signal drops Thursday — are you in? ⚡</span>
+    <span class="ticker-item">Norway's oil fund is going ALL IN on AI 🤖</span>
+    <span class="ticker-item">Oslo delivery driver building a $10M startup between shifts 🚗💻</span>
+    <span class="ticker-item">Hustle Rankings updated — who made the list this week? 👑</span>
+    <span class="ticker-item">Norway qualifies for FIFA 2026 — here's who's cashing in 🏆</span>
+    <span class="ticker-item">The Signal drops Thursday — are you in? ⚡</span>
+  </div>
+</div>
+
+<!-- TOP AD -->
+<div class="ad-top">
+  <div class="ad-label">Annonse</div>
+  <div class="ad-top-logo">Skyfall Ventures</div>
+  <div class="ad-top-copy">We invest in founders nobody else has discovered yet.</div>
+  <div class="ad-top-cta">Apply now →</div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div>
+    <div class="logo">The Nordic <span>Hustle</span></div>
+    <div class="logo-tag">From the North. For the Relentless.</div>
+  </div>
+  <div class="masthead-nav">
+    <div class="nav-btn nav-btn-ghost">Hustle Rankings 👑</div>
+    <div class="nav-btn nav-btn-ghost">Founders</div>
+    <div class="nav-btn nav-btn-ghost">Money</div>
+    <div class="nav-btn nav-btn-gold">The Signal ★</div>
+    <div class="nav-btn nav-btn-red">Follow 🔔</div>
+  </div>
+</header>
+
+<!-- NAV PILLS -->
+<div class="nav-pills">
+  <div class="npill fire active">🔥 Trending</div>
+  <div class="npill">💻 AI & Tech</div>
+  <div class="npill">👑 Hustle Rankings</div>
+  <div class="npill">💰 Money Moves</div>
+  <div class="npill">🌍 Diaspora Builds</div>
+  <div class="npill">💜 Women Who Hustle</div>
+  <div class="npill">🎓 Self-Taught</div>
+  <div class="npill">🚀 Startups</div>
+  <div class="npill">🏆 Exits</div>
+</div>
+
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero-grid">
+    <div class="hero-main">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-emoji-bg">💰🤖</div>
+      <div class="hero-content">
+        <div class="hero-badges">
+          <span class="badge badge-red">🔥 Breaking</span>
+          <span class="badge badge-gold">Top Story</span>
+        </div>
+        <h1 class="hero-headline">
+          Norway's richest fund said <span class="pop">half their staff codes now.</span> Should you be panicking?
+        </h1>
+        <p class="hero-deck">Nicolai Tangen runs $2 trillion of Norway's money — and his message this morning was a wake-up call nobody's talking about enough. ☕</p>
+        <div class="hero-meta-row">
+          <span class="hmeta">30 March 2026</span>
+          <span class="hmeta">·</span>
+          <span class="hread">⏱ 3 min read</span>
+          <span class="badge badge-outline">22.4k views</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-sidebar">
+      <div class="hero-side-card hsc-1">
+        <div class="hsc-emoji">🚗💻</div>
+        <div class="hsc-kicker">👑 Don Spotlight</div>
+        <div class="hsc-headline">He delivers packages by day. At night he's building a tech empire. Nobody saw this coming.</div>
+        <div class="hsc-meta">4.1k views · 4 min read</div>
+      </div>
+      <div class="hero-side-card hsc-2">
+        <div class="hsc-emoji">⚽🏆</div>
+        <div class="hsc-kicker">💰 Money Moves</div>
+        <div class="hsc-headline">Norway's in FIFA 2026. Here's who's quietly making millions off it.</div>
+        <div class="hsc-meta">3.2k views · 5 min read</div>
+      </div>
+      <div class="hero-side-card hsc-3">
+        <div class="hsc-emoji">💜✨</div>
+        <div class="hsc-kicker">💜 Women Who Hustle</div>
+        <div class="hsc-headline">She had no mentor, no money, no contacts. Now she runs the room.</div>
+        <div class="hsc-meta">2.8k views · 6 min read</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: LATEST -->
+  <div class="sec-head">
+    <div class="sec-title">Latest Stories</div>
+    <div class="sec-count">247 stories this week</div>
+    <div class="sec-more">See all →</div>
+  </div>
+
+  <div class="grid-3">
+    <div class="ncard ncard-featured hover-red">
+      <div class="ncard-img" style="background: linear-gradient(135deg, #0a0820, #1a0a2a);">
+        <span>🚗💻👑</span>
+        <div class="video-play" style="opacity:0; transition: opacity 0.15s;">
+          <div class="video-play-icon">▶</div>
+        </div>
+      </div>
+      <div>
+        <div class="ncard-kicker"><span class="badge badge-purple">👑 Don Spotlight</span></div>
+        <div class="ncard-headline">He delivers packages until 5pm. Then he builds a tech empire from his laptop. Nobody saw this coming.</div>
+        <div class="ncard-deck">Deria from Søndre Nordstrand is a delivery driver and AI founder at the same time. No VC money. No fancy network. Just raw hustle.</div>
+        <div class="ncard-meta"><span>30 Mar 2026</span><span>·</span><span>4 min</span><span>·</span><span>🔥 4.1k views</span></div>
+      </div>
+    </div>
+    <div class="ncard hover-gold">
+      <div class="ncard-img" style="background: linear-gradient(135deg, #0a1a0a, #1a2a0a);">🌍💡</div>
+      <div class="ncard-kicker" style="color: var(--green);">🌍 Diaspora Builds</div>
+      <div class="ncard-headline">The self-taught founders nobody writes about — until now</div>
+      <div class="ncard-deck">Meet the builders from Oslo's most underrepresented neighbourhoods changing the startup game from the bottom up.</div>
+      <div class="ncard-meta"><span>29 Mar</span><span>·</span><span>5 min</span></div>
+    </div>
+  </div>
+
+  <!-- AD MID -->
+  <div class="ad-mid">
+    <div class="ad-label">Annonse</div>
+    <div class="ad-mid-left">
+      <div class="ad-mid-logo">Katapult 🌱</div>
+      <div class="ad-mid-text">Impact StartUp 2026 — 10M NOK for impact founders. Applications close April 15.</div>
+    </div>
+    <div class="ad-mid-cta">Apply now →</div>
+  </div>
+
+  <div class="grid-3">
+    <div class="ncard hover-red">
+      <div class="ncard-img" style="background: linear-gradient(135deg, #1a0814, #0a0820);">🤖⚡</div>
+      <div class="ncard-kicker" style="color: var(--red);">💻 AI & Tech</div>
+      <div class="ncard-headline">These Norwegian AI startups are about to blow up in 2026 — watch them closely</div>
+      <div class="ncard-meta"><span>29 Mar</span><span>·</span><span>5 min</span><span>·</span><span>2.9k views</span></div>
+    </div>
+    <div class="ncard hover-pink">
+      <div class="ncard-img" style="background: linear-gradient(135deg, #1a0a14, #280a20);">💜✨</div>
+      <div class="ncard-kicker" style="color: var(--pink);">💜 Women Who Hustle</div>
+      <div class="ncard-headline">She had no mentor, no money, no contacts. Now she runs the room. Here's her exact playbook.</div>
+      <div class="ncard-meta"><span>28 Mar</span><span>·</span><span>6 min</span><span>·</span><span>2.8k views</span></div>
+    </div>
+    <div class="ncard hover-gold">
+      <div class="ncard-img" style="background: linear-gradient(135deg, #1a1400, #281a00);">⚽🏆</div>
+      <div class="ncard-kicker" style="color: #b45309;">⚽ Sport & Business</div>
+      <div class="ncard-headline">Norway's in FIFA 2026 for the first time in 28 years. Here's who's quietly making millions off it.</div>
+      <div class="ncard-meta"><span>27 Mar</span><span>·</span><span>5 min</span><span>·</span><span>3.2k views</span></div>
+    </div>
+  </div>
+
+  <!-- VIDEO ROW -->
+  <div class="sec-head">
+    <div class="sec-title">🎬 Watch Now</div>
+    <div class="sec-more">See all on TikTok →</div>
+  </div>
+
+  <div class="video-row" style="padding-bottom: 3px;">
+    <div class="video-card">
+      <div class="video-thumb" style="background: linear-gradient(135deg, #0a0820, #1a0830);">
+        💰🤖
+        <div class="video-play"><div class="video-play-icon">▶</div></div>
+      </div>
+      <div class="video-info">
+        <div class="video-platform">TikTok · @nordichustle</div>
+        <div class="video-title">Norway's $2 trillion fund just said this about AI 😱</div>
+        <div class="video-views">142k views</div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb" style="background: linear-gradient(135deg, #1a0a28, #280a40);">
+        🚗💻
+        <div class="video-play"><div class="video-play-icon">▶</div></div>
+      </div>
+      <div class="video-info">
+        <div class="video-platform">Instagram · @nordichustle</div>
+        <div class="video-title">Delivery driver by day, startup founder by night 👀</div>
+        <div class="video-views">89k views</div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb" style="background: linear-gradient(135deg, #0a1a0a, #0a2810);">
+        👑✨
+        <div class="video-play"><div class="video-play-icon">▶</div></div>
+      </div>
+      <div class="video-info">
+        <div class="video-platform">YouTube Shorts</div>
+        <div class="video-title">What the Hustle Rankings actually mean 👑</div>
+        <div class="video-views">67k views</div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb" style="background: linear-gradient(135deg, #1a0a0a, #2a0a14);">
+        💜🔥
+        <div class="video-play"><div class="video-play-icon">▶</div></div>
+      </div>
+      <div class="video-info">
+        <div class="video-platform">Snapchat · Discover</div>
+        <div class="video-title">She built her business while everyone said no 💜</div>
+        <div class="video-views">54k views</div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb" style="background: linear-gradient(135deg, #14140a, #1a1a00);">
+        ⚽💰
+        <div class="video-play"><div class="video-play-icon">▶</div></div>
+      </div>
+      <div class="video-info">
+        <div class="video-platform">TikTok · @nordichustle</div>
+        <div class="video-title">FIFA 2026: The money nobody's talking about 🏆</div>
+        <div class="video-views">38k views</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRENDING -->
+  <div class="sec-head">
+    <div class="sec-title">🔥 Trending Now</div>
+    <div class="sec-more">See all →</div>
+  </div>
+
+  <div class="trend-list">
+    <div class="trend-item">
+      <div class="trend-num">01</div>
+      <div>
+        <div class="trend-headline">Norway's oil fund is going all in on AI — and it changes everything for you</div>
+        <div class="trend-sub">Nicolai Tangen's morning wake-up call 🔥</div>
+      </div>
+      <div class="trend-stat"><div class="trend-views">22.4k</div><div class="trend-fire">🔥</div></div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-num">02</div>
+      <div>
+        <div class="trend-headline">He delivers packages until 5pm. Then he builds a tech empire. Nobody saw this coming.</div>
+        <div class="trend-sub">Deria · Søndre Nordstrand · 👑 Don</div>
+      </div>
+      <div class="trend-stat"><div class="trend-views">4.1k</div><div class="trend-fire">📈</div></div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-num">03</div>
+      <div>
+        <div class="trend-headline">Impact StartUp 2026: Who's getting the 10M NOK — and who deserves it?</div>
+        <div class="trend-sub">Shifter x Katapult · Funding</div>
+      </div>
+      <div class="trend-stat"><div class="trend-views">3.8k</div><div class="trend-fire">💰</div></div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-num">04</div>
+      <div>
+        <div class="trend-headline">She had no mentor, no money, no contacts. Now she runs the room. Her exact playbook.</div>
+        <div class="trend-sub">Women Who Hustle · Oslo</div>
+      </div>
+      <div class="trend-stat"><div class="trend-views">2.8k</div><div class="trend-fire">💜</div></div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-num">05</div>
+      <div>
+        <div class="trend-headline">Norway's in FIFA 2026. Here's who's quietly making millions off it.</div>
+        <div class="trend-sub">Sport & Business · 28 years in the making</div>
+      </div>
+      <div class="trend-stat"><div class="trend-views">3.2k</div><div class="trend-fire">⚽</div></div>
+    </div>
+  </div>
+
+  <!-- DON RANKINGS -->
+  <div class="don-block">
+    <div class="don-head">
+      <div>
+        <div class="don-title">👑 Hustle Rankings</div>
+        <div class="don-sub">Updated every Monday · Week 13 · 2026</div>
+      </div>
+      <div class="don-more">See all →</div>
+    </div>
+    <div class="don-grid">
+      <div class="don-card three">
+        <div class="don-stars">★★★</div>
+        <div class="don-name">Nicolai Tangen</div>
+        <div class="don-desc">Says what no politician dares to. Acts on it. Norway's sharpest capital mind.</div>
+      </div>
+      <div class="don-card two">
+        <div class="don-stars">★★</div>
+        <div class="don-name">Shafi Aden</div>
+        <div class="don-desc">Building real things in a tough market. Results speak louder than the pitch.</div>
+      </div>
+      <div class="don-card one">
+        <div class="don-stars">★</div>
+        <div class="don-name">Abdirahman Guleed</div>
+        <div class="don-desc">$880K bootstrapped is respect. Crowded market needs a sharper angle.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- AD WIDE -->
+  <div class="ad-wide">
+    <div class="ad-label">Annonse</div>
+    <div class="ad-wide-accent"></div>
+    <div class="ad-wide-inner">
+      <div class="ad-wide-logo">2M2D</div>
+      <div class="ad-wide-div"></div>
+      <div class="ad-wide-copy">
+        <strong>From idea to market in 90 days.</strong>
+        <span>We invest early. Very early.</span>
+      </div>
+      <div class="ad-wide-cta">Book your pitch →</div>
+    </div>
+  </div>
+
+  <!-- 2 COL SECTION -->
+  <div class="sec-head">
+    <div class="sec-title">💜 Women Who Hustle</div>
+    <div class="sec-more">See all →</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="ncard ncard-dark hover-pink">
+      <div class="ncard-img" style="background: linear-gradient(135deg, #1a0a20, #280a30); height: 110px; border-radius: 10px; margin-bottom: 12px;">💜🔥</div>
+      <div class="ncard-kicker" style="color: var(--pink);">💜 Profile</div>
+      <div class="ncard-headline">She was told she didn't belong in the room. So she built her own room.</div>
+      <div class="ncard-deck">An Oslo founder on navigating a startup world that wasn't built for her — and winning anyway.</div>
+      <div class="ncard-meta" style="color: rgba(255,255,255,0.2);"><span>28 Mar</span><span>·</span><span>7 min</span></div>
+    </div>
+    <div class="ncard hover-purple">
+      <div class="ncard-img" style="background: linear-gradient(135deg, #14082a, #200a40); height: 110px; border-radius: 10px; margin-bottom: 12px;">✨📈</div>
+      <div class="ncard-kicker" style="color: var(--purple);">🎓 Self-Taught</div>
+      <div class="ncard-headline">No degree. No network. No excuses. How she taught herself to code and raised her first round.</div>
+      <div class="ncard-deck">The no-BS guide from someone who actually did it — not someone who read about it.</div>
+      <div class="ncard-meta"><span>27 Mar</span><span>·</span><span>8 min</span></div>
+    </div>
+  </div>
+
+  <!-- THE SIGNAL -->
+  <div class="signal-block">
+    <div>
+      <div class="signal-eye">⚡ The Signal — Weekly Intelligence</div>
+      <div class="signal-headline">The weekly drop nobody else gives you</div>
+      <div class="signal-deck">Who's about to raise? Which markets are undervalued? What are smart money moves doing right now? Every Thursday.</div>
+    </div>
+    <div class="signal-cta">Join The Signal — 299 NOK/mo ★</div>
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-mid" style="border-left-color: var(--red); margin-bottom: 0;">
+    <div class="ad-label">Annonse</div>
+    <div class="ad-mid-left">
+      <div class="ad-mid-logo" style="color: var(--red);">Shifter 📰</div>
+      <div class="ad-mid-text">Norway's best startup journalism. Stay in the loop.</div>
+    </div>
+    <div class="ad-mid-cta" style="background: var(--red);">Read Shifter →</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">The Nordic <span>Hustle</span></div>
+        <div class="footer-tagline">From the North. For the Relentless.</div>
+        <div class="footer-about">We cover self-taught entrepreneurs, founders without networks, and the people building real things without asking for permission.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Sections</div>
+        <div class="footer-links">
+          <a href="#">👑 Hustle Rankings</a>
+          <a href="#">💜 Women Who Hustle</a>
+          <a href="#">🌍 Diaspora Builds</a>
+          <a href="#">💻 AI & Tech</a>
+          <a href="#">💰 Money Moves</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Community</div>
+        <div class="footer-links">
+          <a href="#">⚡ The Signal ★</a>
+          <a href="#">🏠 Operator Forum</a>
+          <a href="#">📝 Submit your story</a>
+          <a href="#">📣 Advertise with us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Follow us</div>
+        <div class="footer-links">
+          <a href="#">TikTok @nordichustle</a>
+          <a href="#">Instagram @nordichustle</a>
+          <a href="#">YouTube</a>
+          <a href="#">Snapchat</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 The Nordic Hustle · From the North. For the Relentless.</div>
+      <div class="footer-social">
+        <div class="footer-social-pill">TikTok</div>
+        <div class="footer-social-pill">Instagram</div>
+        <div class="footer-social-pill">YouTube</div>
+        <div class="footer-social-pill">Snap</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
