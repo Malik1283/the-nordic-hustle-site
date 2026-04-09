@@ -50,14 +50,42 @@
   .article-1 { padding: 32px 0 0; }
 
   .hero-img {
-    width: 100%; height: 340px; border-radius: 16px; position: relative;
-    overflow: hidden; margin-bottom: 20px;
-    background: linear-gradient(135deg, #0a0a14, #0a1428);
-    display: flex; align-items: center; justify-content: center; font-size: 5rem;
+    width: 100%;
+    height: 340px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #0a0a14;
   }
-  .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 60%, transparent 100%); }
-  .hero-img-caption { position: absolute; bottom: 12px; left: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.12em; z-index: 2; }
+
+  .hero-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+    z-index: 1;
+  }
+
+  .hero-img-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    z-index: 2;
+  }
 
   .cat-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
   .cat-purple { background: #ede9fe; color: var(--purple); }
@@ -167,7 +195,7 @@
 
 <!-- MASTHEAD -->
 <header class="masthead">
-  <a href="index.html">
+  <a href="/index.html">
     <div class="logo">The Nordic <span>Hustle</span></div>
     <div class="logo-tag">From the North. For the Relentless.</div>
   </a>
@@ -179,7 +207,7 @@
 
 <!-- NAV PILLS -->
 <div class="nav-pills">
-  <a href="index.html"><div class="nav-pill fire">🔥 Trending</div></a>
+  <a href="/index.html"><div class="nav-pill fire">🔥 Trending</div></a>
   <div class="nav-pill">Founders</div>
   <div class="nav-pill">Money Moves</div>
   <div class="nav-pill active">Hustle Rankings</div>
@@ -193,8 +221,7 @@
 
   <!-- Hero Image -->
   <div class="hero-img">
-    🌆
-    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80&fit=crop" alt="Oslo city early morning" />
+    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400&q=85&fit=crop" alt="Oslo city early morning" />
     <div class="hero-img-overlay"></div>
     <div class="hero-img-caption">📍 Søndre Nordstrand, Oslo · 04:45</div>
   </div>
@@ -327,7 +354,7 @@
   <div class="related">
     <div class="related-title">More Stories</div>
     <div class="related-grid">
-      <a href="tangen-oljefondet-ai-2026.html">
+      <a href="/articles/tangen-oljefondet-ai-2026.html">
         <div class="related-card">
           <div class="related-kicker">🔥 Breaking · AI & Tech</div>
           <div class="related-headline">Norway's richest fund said half their staff codes now. Should you be panicking?</div>
