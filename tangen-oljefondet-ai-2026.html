@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Nordic Hustle</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --off-white: #f8f5f0;
+    --red: #e8003d;
+    --pink: #ff6b9d;
+    --gold: #ffb800;
+    --purple: #7c3aed;
+    --grey: #6b7280;
+    --light: #f1f0ee;
+    --card-border: #e5e2dc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--off-white);
+    color: var(--black);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--red);
+    padding: 8px 0;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .ticker-label {
+    background: var(--black);
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0 14px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker-track {
+    display: flex;
+    animation: ticker 28s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: white;
+    padding: 0 28px;
+    letter-spacing: 0.02em;
+  }
+
+  .ticker-item::after { content: ' 🔥'; }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--black);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--red);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: white;
+    letter-spacing: 0.1em;
+  }
+
+  .logo span { color: var(--red); }
+
+  .logo-tag {
+    font-size: 0.6rem;
+    color: var(--gold);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .masthead-right {
+    display: flex;
+    gap: 10px;
+  }
+
+  .pill {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .pill-red { background: var(--red); color: white; }
+  .pill-outline { border: 2px solid rgba(255,255,255,0.2); color: white; }
+
+  /* ── NAV PILLS ── */
+  .nav-pills {
+    background: white;
+    padding: 10px 20px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .nav-pills::-webkit-scrollbar { display: none; }
+
+  .nav-pill {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid var(--card-border);
+    color: var(--grey);
+    transition: all 0.15s;
+  }
+
+  .nav-pill:hover, .nav-pill.active {
+    background: var(--black);
+    color: white;
+    border-color: var(--black);
+  }
+
+  .nav-pill.fire { border-color: var(--red); color: var(--red); }
+  .nav-pill.fire:hover { background: var(--red); color: white; }
+
+  /* ── WRAPPER ── */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* ══════════════════════════════════
+     ARTICLE 1: TANGEN
+  ══════════════════════════════════ */
+
+  .article-1 {
+    padding: 32px 0 0;
+  }
+
+  /* Hero image mock */
+  .hero-img {
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1020 50%, #0a0a0a 100%);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .hero-img-grid {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 31px),
+                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 31px);
+  }
+
+  .hero-emoji {
+    font-size: 5rem;
+    z-index: 2;
+    filter: drop-shadow(0 0 40px rgba(255,184,0,0.4));
+  }
+
+  .hero-img-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* Category badge */
+  .cat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+
+  .cat-red { background: #ffe5ec; color: var(--red); }
+  .cat-purple { background: #ede9fe; color: var(--purple); }
+  .cat-gold { background: #fff8e1; color: #b45309; }
+
+  /* Headline styles */
+  .art-headline {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    line-height: 1.15;
+    color: var(--black);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .art-headline .highlight {
+    background: linear-gradient(120deg, var(--red), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .art-subhead {
+    font-size: 1rem;
+    color: var(--grey);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+
+  /* Author row */
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 0;
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 24px;
+  }
+
+  .author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--red), var(--pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+
+  .author-meta {
+    font-size: 0.72rem;
+    color: var(--grey);
+  }
+
+  .read-time {
+    margin-left: auto;
+    background: var(--light);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--grey);
+  }
+
+  /* Body text */
+  .art-body p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #2d2d2d;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .art-body p .bold { font-weight: 900; color: var(--black); }
+
+  /* Stat callout */
+  .stat-callout {
+    background: var(--black);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin: 28px 0;
+    display: flex;
+    gap: 0;
+  }
+
+  .stat-callout-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-callout-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-lbl {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  /* Pull quote */
+  .pull {
+    background: linear-gradient(135deg, #fff0f5, #fce7f3);
+    border-left: 4px solid var(--pink);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 20px 20px 22px;
+    margin: 28px 0;
+  }
+
+  .pull p {
+    font-size: 1.15rem !important;
+    font-weight: 900 !important;
+    color: var(--black) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 6px !important;
+    font-style: italic;
+  }
+
+  .pull cite {
+    font-size: 0.72rem;
+    color: var(--grey);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* Emoji list */
+  .emoji-list {
+    background: white;
+    border: 2px solid var(--card-border);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 24px 0;
+  }
+
+  .emoji-list-title {
+    font-weight: 900;
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .emoji-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--card-border);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    line-height: 1.4;
+  }
+
+  .emoji-list-item:last-child { border-bottom: none; }
+
+  .emoji-list-item .ico { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* CTA box */
+  .cta-box {
+    background: linear-gradient(135deg, var(--black), #1a0a0a);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin: 32px 0;
+    text-align: center;
+  }
+
+  .cta-box-emoji { font-size: 2.5rem; margin-bottom: 12px; }
+
+  .cta-box h3 {
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  .cta-box p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 900;
+    font-size: 0.85rem;
+    padding: 12px 24px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── DIVIDER ── */
+  .article-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 40px;
+  }
+
+  .article-divider-line { flex: 1; height: 2px; background: var(--card-border); }
+
+  .article-divider-badge {
+    background: var(--red);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    padding: 5px 18px;
+    border-radius: 999px;
+  }
+
+  /* ══════════════════════════════════
+     ARTICLE 2: DERIA
+  ══════════════════════════════════ */
+
+  .hero-img-2 {
+    background: linear-gradient(135deg, #0a1628 0%, #1a0a28 50%, #280a0a 100%);
+  }
+
+  .share-row {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .share-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: 2px solid var(--card-border);
+    transition: all 0.15s;
+  }
+
+  .share-btn:hover { transform: translateY(-1px); }
+
+  .share-btn.tiktok { border-color: #010101; color: #010101; }
+  .share-btn.insta { border-color: #e1306c; color: #e1306c; }
+  .share-btn.snap { border-color: #fffc00; background: #fffc00; color: black; }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    margin: 28px 0;
+    padding-left: 24px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--red), var(--pink), var(--purple));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 2px solid var(--card-border);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--red);
+  }
+
+  .timeline-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 5px;
+  }
+
+  .timeline-text {
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--black);
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: linear-gradient(135deg, #ede9fe, #fce7f3);
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin: 28px 0;
+    border: 2px solid rgba(124,58,237,0.15);
+  }
+
+  .highlight-box-title {
+    font-weight: 900;
+    font-size: 0.85rem;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .highlight-box p {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #2d2d2d !important;
+    margin-bottom: 0 !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Footer */
+  .site-footer {
+    background: var(--black);
+    padding: 32px 20px 24px;
+    margin-top: 48px;
+    border-top: 4px solid var(--red);
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: white;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .footer-logo span { color: var(--red); }
+
+  .footer-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+
+  .footer-pills {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .footer-pill {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.2);
+    font-weight: 600;
+  }
+
+  @media (max-width: 480px) {
+    .stat-callout { flex-direction: column; gap: 16px; }
+    .stat-callout-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px; }
+    .stat-callout-item:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-label">🔴 Live</div>
+  <div class="ticker-track">
+    <span class="ticker-item">Norway's oil fund is going ALL IN on AI</span>
+    <span class="ticker-item">This Oslo guy drives deliveries by day and builds a startup at night</span>
+    <span class="ticker-item">The Hustle Rankings just dropped — is your fave on it?</span>
+    <span class="ticker-item">Norway's oil fund is going ALL IN on AI</span>
+    <span class="ticker-item">This Oslo guy drives deliveries by day and builds a startup at night</span>
+    <span class="ticker-item">The Hustle Rankings just dropped — is your fave on it?</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <a href="index.html">
+  <div>
+    <div class="logo">The Nordic <span>Hustle</span></div>
+    <div class="logo-tag">From the North. For the Relentless.</div>
+  </div>
+  </a>
+  <div class="masthead-right">
+    <div class="pill pill-outline">🔔 Follow</div>
+    <div class="pill pill-red">Join ★</div>
+  </div>
+</header>
+
+<!-- NAV PILLS -->
+<div class="nav-pills">
+  <div class="nav-pill fire active">🔥 Trending</div>
+  <div class="nav-pill">Founders</div>
+  <div class="nav-pill">Money Moves</div>
+  <div class="nav-pill">Hustle Rankings</div>
+  <div class="nav-pill">AI & Tech</div>
+  <div class="nav-pill">Success Stories</div>
+  <div class="nav-pill">Diaspora Builds</div>
+</div>
+
+<!-- ══════════════════════ ARTICLE 1 ══════════════════════ -->
+<div class="wrap">
+<div class="article-1">
+
+  <!-- Hero Image -->
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80&fit=crop" alt="Finance technology Oslo" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 60%);border-radius:16px;"></div>
+    <div class="hero-img-caption">📍 Oslo Frokostseminar — 30. March 2026</div>
+  </div>
+
+  <!-- Category -->
+  <div class="cat-badge cat-red">🔥 Breaking News</div>
+
+  <!-- Headline -->
+  <h1 class="art-headline">
+    Norway's richest fund just said <span class="highlight">half their staff now codes.</span> Should you be scared?
+  </h1>
+
+  <p class="art-subhead">
+    Nicolai Tangen runs $2 TRILLION of Norway's money — and he just dropped a truth bomb that nobody's talking about enough. ☕
+  </p>
+
+  <!-- Author -->
+  <div class="author-row">
+    <div class="author-avatar">🎙️</div>
+    <div>
+      <div class="author-name">The Nordic Hustle</div>
+      <div class="author-meta">Oslo · 30 March 2026</div>
+    </div>
+    <div class="read-time">⏱ 3 min read</div>
+  </div>
+
+  <!-- Body -->
+  <div class="art-body">
+
+    <p>OK so imagine you're at a breakfast event in Oslo. You grab your coffee. And then <span class="bold">the guy who controls more money than most countries</span> looks at the room and basically says: the world has already changed. You just haven't caught up yet.</p>
+
+    <p>That's exactly what happened when Nicolai Tangen — CEO of the Norwegian Oil Fund — spoke at a seminar this morning. His message? <span class="bold">Half of the people working at Norway's $2 trillion fund are now coding.</span> Not just the IT guys. Half. The whole place.</p>
+
+    <div class="stat-callout">
+      <div class="stat-callout-item">
+        <div class="stat-num">½</div>
+        <div class="stat-lbl">of Oljefondet staff now codes</div>
+      </div>
+      <div class="stat-callout-item">
+        <div class="stat-num">$2T</div>
+        <div class="stat-lbl">under management</div>
+      </div>
+      <div class="stat-callout-item">
+        <div class="stat-num">2026</div>
+        <div class="stat-lbl">the year it became undeniable</div>
+      </div>
+    </div>
+
+    <p>And look — this isn't some tech bro on Twitter telling you to "learn to code or get left behind." This is <span class="bold">the person managing Norway's financial future</span>, basically confirming what a lot of us have been feeling: AI is not coming. It's already here. And the people at the top? They moved fast.</p>
+
+    <div class="pull">
+      <p>"We are in the middle of the biggest shift in modern history. And it's wild that we get to live through it."</p>
+      <cite>— Heard at the Oslo seminar, 30 March 2026</cite>
+    </div>
+
+    <p>So what does this actually mean for <span class="bold">you?</span> Especially if you're young, if you're a woman trying to break into business or tech, if you're self-taught and nobody handed you connections on a silver plate?</p>
+
+    <div class="emoji-list">
+      <div class="emoji-list-title">✨ What this actually means for you</div>
+      <div class="emoji-list-item"><div class="ico">🚀</div><div>The gatekeepers are losing their grip. AI tools mean you can build things that used to need an entire team.</div></div>
+      <div class="emoji-list-item"><div class="ico">💡</div><div>Self-taught is no longer a weakness — it's literally the playbook the smartest funds are running.</div></div>
+      <div class="emoji-list-item"><div class="ico">⏰</div><div>The window is open right now. Companies are desperate for people who can move fast with AI.</div></div>
+      <div class="emoji-list-item"><div class="ico">🎯</div><div>You don't need to be a software engineer. You need to know how to use the tools. That's learnable in weeks.</div></div>
+    </div>
+
+    <p>The people who are going to win in the next five years aren't necessarily the ones with the best degrees. They're the ones who adapted <span class="bold">while everyone else was still debating whether AI was real.</span></p>
+
+    <p>Tangen isn't guessing. He's already placed the bet. The question is — what bet are you placing?</p>
+
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-box-emoji">⚡</div>
+    <h3>The technology doesn't wait. Neither should you.</h3>
+    <p>Get The Signal — our weekly intelligence drop for people actually building things.</p>
+    <div class="cta-btn">Get The Signal →</div>
+  </div>
+
+</div>
+
+<!-- RELATED -->
+<div class="wrap" style="padding-bottom:48px;">
+  <div style="border-top:2px solid #e5e2dc; padding-top:20px; margin-top:0;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.05em; margin-bottom:12px;">More Stories</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <a href="deria-delivery-driver-startup.html">
+        <div style="background:white;border-radius:12px;padding:14px;border:2px solid #e5e2dc;cursor:pointer;transition:all 0.15s;">
+          <div style="font-size:0.62rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#7c3aed;margin-bottom:6px;">👑 Don Spotlight</div>
+          <div style="font-weight:900;font-size:0.88rem;line-height:1.3;color:#0a0a0a;">He delivers packages until 5pm. Then he builds a tech empire. Nobody saw this coming.</div>
+        </div>
+      </a>
+      <a href="#">
+        <div style="background:white;border-radius:12px;padding:14px;border:2px solid #e5e2dc;cursor:pointer;">
+          <div style="font-size:0.62rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#b45309;margin-bottom:6px;">⚽ Sport & Business</div>
+          <div style="font-weight:900;font-size:0.88rem;line-height:1.3;color:#0a0a0a;">Norway's in FIFA 2026. Here's who's quietly making millions off it.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-logo">The Nordic <span>Hustle</span></div>
+  <div class="footer-tag">From the North. For the Relentless.</div>
+  <div class="footer-pills">
+    <div class="footer-pill">TikTok</div>
+    <div class="footer-pill">Instagram</div>
+    <div class="footer-pill">Snapchat</div>
+    <div class="footer-pill">YouTube</div>
+    <div class="footer-pill">The Signal ★</div>
+  </div>
+  <div class="footer-copy">© 2026 The Nordic Hustle · Oslo, Norway</div>
+</footer>
+
+</body>
+</html>
